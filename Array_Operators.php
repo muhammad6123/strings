@@ -9,4 +9,11 @@ $y = array(
     "d" => "Rajshahi",
 );
 var_dump($x + $y);
+echo "</br>";
+var_dump($x == $y);
+echo "</br>";
+var_dump($x === $y);
+echo "</br>";
+
+var_dump($x != $y);
 ?>
