@@ -43,5 +43,11 @@ for($row = 0; $row<4; $row++){
     echo "</ul>";
 }
 
-$nam = array()
+$nam = array(25, 54, 65, 85, 47, 32);
+rsort($nam);
+$length = count($nam);
+for($i = 0; $i <$length; $i++){
+    echo $nam[$i];
+    echo "</br>";
+}
 ?>
