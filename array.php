@@ -50,4 +50,11 @@ for($i = 0; $i <$length; $i++){
     echo $nam[$i];
     echo "</br>";
 }
+
+$col = array("jamal"=>"25", "kamal"=>"265", "rohim"=>"45");
+asort($col);
+foreach($col as $key => $value){
+    echo "key = ".$key."value".$value;
+    echo "<br/>";
+}
 ?>
