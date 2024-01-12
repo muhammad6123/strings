@@ -17,7 +17,7 @@
         move_uploaded_file($filetmp, "image/".$filename);
         echo "image uploaded successfully";
     }
-
+phpinfo();
     ?>
 </body>
 </html>
