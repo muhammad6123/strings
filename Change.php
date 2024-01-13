@@ -8,15 +8,16 @@
 <body>
     <?php 
     if(isset($_POST['text'])){
+        global $text;
         $text = $_POST['text'];
-        echo ($text);
+        echo trim($text, " .");
     }
     
     
     ?>
 
 <form action="" method="post">
-    <input type="text" name="text" value="text"/>
+    <input type="text" name="text" value="<?php global $text; echo $text;?>"/>
     <input type="submit" value="submit"/>
 </form>
     
