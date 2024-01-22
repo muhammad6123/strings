@@ -2,6 +2,46 @@
 include 'crud01.php';
 
 
+
+
+
+
+if(isset($_POST['submit'])){
+    $name = $_POST['name'];
+    $fatherName = $_POST['fatherName'];
+    $matherName = $_POST['motherName'];
+    $dode_of_birth = $_POST['dode_of_birth'];
+
+    $image = $_FILES['image']['name'];
+    $name_tap_name = $_FILES['image']['tmp_name'];
+    $name_tap_name_folder = 'uploaded/'.$image;
+
+    if(empty($name) || empty($fatherName) || empty($matherName) || empty($image)){
+        $message[] = 'Please fill out all fields.';
+    } else {
+    
+        $insert = "INSERT INTO python_crud (`name`, `fatherName`, `motherName`, `dode_of_birth`, `image`) VALUES ('$name', '$fatherName', '$matherName', '$dode_of_birth', '$image')";
+
+        $upload = mysqli_query($conn, $insert);
+    
+
+
+    }
+}
+
+
+
+$result = mysqli_query($conn, "SELECT * FROM python_crud ");
+
+
+
+if (isset($_GET['delete'])) {
+    $id = $_GET['delete'];
+    mysqli_query($conn, "DELETE FROM python_crud WHERE id=$id");
+    header('location: crud_from.php');
+
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -33,7 +73,7 @@ include 'crud01.php';
                             <input type="date" name="dode_of_birth" placeholder="Enter your dode_of_birth"  class="form-control"></input>
 
                             <label for="">image</label>
-                            <input type="file" name="image" class="form-control"></input> <br>
+                            <input type="file" name="image"  class="form-control"></input> <br>
 
                             <input type="submit" name="submit" value="submit" class="btn btn-success form-control">
                         </form>
@@ -66,7 +106,7 @@ include 'crud01.php';
                         <td><?php echo $row['dode_of_birth']; ?></td>
                         <td><img src="uploaded/<?php echo $row['image']; ?>" height="100" alt=""></td>
                         <td>
-                            <a href="update02.php?edit=<?php echo $row['id'];?>" class="btn btn-secondary">edit</a>
+                            <a href="upded02.php?edit=<?php echo $row['id'];?>" class="btn btn-secondary">edit</a>
                             <a href="crud_from.php?delete=<?php echo $row['id']; ?>" class="btn btn-danger">delete</a>
                         </td>
                     </tr>

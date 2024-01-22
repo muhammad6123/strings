@@ -1,8 +1,6 @@
 <?php 
-include 'crud01.php';
-
-
-$id = $GET['edit'];
+include_once 'crud01.php';
+$id = $_GET['edit'];
 if(isset($_POST['update'])){
     $name = $_POST['name'];
     $fatherName = $_POST['fatherName'];
@@ -17,9 +15,11 @@ if(isset($_POST['update'])){
         $message[] = 'Please fill out all fields.';
     } else {
     
-        $upodate = " UPDATE python_crud SET name='$name', fatherName='$fatherName', motherName='$motherName', dode_of_birth='dode_of_birth', image='image') VALUES ('$name', '$fatherName', '$matherName', '$dode_of_birth', '$image' WHERE id = $id";
+        $update = "UPDATE python_crud 
+        SET name='$name', fatherName='$fatherName', motherName='$matherName', dode_of_birth='$dode_of_birth', image='$image' 
+        WHERE id = $id";
 
-        $upload = mysqli_query($conn, $upodate);
+        $upload = mysqli_query($conn, $update);
     }
 }
 
@@ -44,13 +44,13 @@ if(isset($_POST['update'])){
                 <div class="card shadow">
                     <div class="card-body">
                     <?php 
-                    $sel = mysqli_query($conn,"SELECT * FROM python_crud  WHERE id=$id");
+                    $sel = mysqli_query($conn,"SELECT * FROM python_crud WHERE id=$id");
                     while($row = mysqli_fetch_assoc($sel)){
 
                         ?>
                     
                 
-                        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST" enctype="multipart/form-data">
+                        <form action="" method="POST" enctype="multipart/form-data">
                             <label for="">name</label>
                             <input type="text" name="name" value="<?php echo $row['name']?>" class="form-control"></input>
 
@@ -64,7 +64,7 @@ if(isset($_POST['update'])){
                             <input type="date" name="dode_of_birth" value="<?php echo $row['dode_of_birth']?>"   class="form-control"></input>
 
                             <label for="">image</label>
-                            <input type="file" name="image" class="form-control"></input> <br>
+                            <input type="file" name="image" accept="image/png, image/jpeg, image/jpg" class="form-control"></input> <br>
 
                             <input type="submit" name="update" value="update" class="btn btn-success form-control"> <br>
                             <button class="btn btn-success mt-4  form-control"><a href="crud_from.php">go back</a></button>
